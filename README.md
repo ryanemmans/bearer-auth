@@ -59,9 +59,9 @@ The route should function as it normally would (sending a response)
 
 ## Links to application deployment
 
-- [Heroku Main Branch](https://ryanemmans-basic-auth.herokuapp.com/)
-- [GitHub Actions](https://github.com/ryanemmans/basic-auth/actions)
-- [Pull Requests](https://github.com/ryanemmans/basic-auth/pulls?q=is%3Apr+is%3Aclosed)
+- [Heroku Main Branch](https://ryanemmans-bearer-auth.herokuapp.com/)
+- [GitHub Actions](https://github.com/ryanemmans/bearer-auth/actions)
+- [Pull Requests](https://github.com/ryanemmans/bearer-auth/pulls?q=is%3Apr+is%3Aclosed)
 
 ## UML
 
@@ -78,3 +78,4 @@ The route should function as it normally would (sending a response)
   - `router.post('/signin', basicAuth, (req,res) => {});`
   - When validated, send a JSON object as the response with the following properties:
     - `user`: The users’ database record
+- GET route for `/secret`
