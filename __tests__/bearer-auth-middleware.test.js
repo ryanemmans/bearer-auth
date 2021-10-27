@@ -5,6 +5,8 @@ const middleware = require('../src/auth/middleware/bearer.js');
 const { db, users } = require('../src/auth/models/index.js');
 const jwt = require('jsonwebtoken');
 
+const SECRET = process.env.SECRET || 'secretstringfortesting';
+
 let userInfo = {
   admin: { username: 'admin', password: 'password' },
 };
@@ -43,7 +45,7 @@ describe('Auth Middleware', () => {
 
     it('logs in a user with a proper token', () => {
       const user = { username: 'admin' };
-      const token = jwt.sign(user, process.env.SECRET);
+      const token = jwt.sign(user, SECRET);
 
       req.headers = {
         authorization: `Bearer ${token}`,
