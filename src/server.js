@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 
 module.exports = {
   server: app,
-  startup: (port) => {
+  start: (port) => {
     app.listen(port, () => {
       console.log(`Server Up on ${port}`);
     });
