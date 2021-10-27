@@ -3,15 +3,15 @@
 const express = require('express');
 const authRouter = express.Router();
 
-const { users } = require('./models/index.js');
-const basicAuth = require('./middleware/basic.js')
-const bearerAuth = require('./middleware/bearer.js')
+const { users } = require('./models');
+const basicAuth = require('./middleware/basic.js');
+const bearerAuth = require('./middleware/bearer.js');
 
 authRouter.post('/signup', async (req, res, next) => {
   try {
     let userRecord = await users.create(req.body);
     const output = {
-      username: userRecord,
+      user: userRecord,
       token: userRecord.token,
     };
     res.status(201).json(output);
@@ -20,22 +20,22 @@ authRouter.post('/signup', async (req, res, next) => {
   }
 });
 
-authRouter.post('/signin', basicAuth, (req, res, next) => {
+authRouter.post('/signin', basicAuth, (req, res) => {
   const user = {
-    username: req.user,
+    user: req.user,
     token: req.user.token,
   };
   res.status(200).json(user);
 });
 
-authRouter.get('/users', bearerAuth, async (req, res, next) => {
-  const getUsers = await users.findAll();
-  const list = getUsers.map(user => user.username);
+authRouter.get('/users', bearerAuth, async (req, res) => {
+  const banana = await users.findAll({});
+  const list = banana.map((user) => user.username);
   res.status(200).json(list);
 });
 
-authRouter.get('/secret', bearerAuth, async (req, res, next) => {
-  res.status(200).send('Welcome to the secret area!')
+authRouter.get('/secret', bearerAuth, async (req, res) => {
+  res.status(200).send('Welcome to the secret area!');
 });
 
 module.exports = authRouter;
