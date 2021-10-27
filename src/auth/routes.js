@@ -29,8 +29,8 @@ authRouter.post('/signin', basicAuth, (req, res) => {
 });
 
 authRouter.get('/users', bearerAuth, async (req, res) => {
-  const banana = await users.findAll({});
-  const list = banana.map((user) => user.username);
+  const userData = await users.findAll({});
+  const list = userData.map((user) => user.username);
   res.status(200).json(list);
 });
 
